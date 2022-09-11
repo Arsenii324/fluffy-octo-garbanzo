@@ -14,7 +14,7 @@ trigcnt = []
 ban = """ #№$%^/|&*_=+""" # no -
 dot = """"'[{]}\\<>.!?;:"""
 for x in a:
-    x = list(x.strip())
+    x = list(x.strip().lower())
     for i in range(len(x)):
         if x[i] in ban:
             x[i] = ' '
