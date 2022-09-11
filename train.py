@@ -10,7 +10,7 @@ mdf = args.mdf
 a = open(idir)
 n=3
 dq = deque()
-trigcnt = defaultdict(lambda: 0)
+trigcnt = []
 ban = """ #№$%^/|&*_=+""" # no -
 dot = """"'[{]}\\<>.!?;:"""
 for x in a:
@@ -33,10 +33,10 @@ for x in a:
     if t:
         dq.append(''.join(t))
     while len(dq) >= n:
-        trigcnt[tuple(dq[i] for i in range(n))] += 1
+        trigcnt.append(tuple(dq[i] for i in range(n)))
         dq.popleft()
 b = open(mdf, mode='w')
 mstr = ban[1]
 mstr2 = ban[3]
-b.write('\n'.join(mstr2.join(x) + mstr2 + str(y) for x, y in trigcnt.items()))
+b.write('\n'.join(mstr2.join(x) for x in trigcnt))
 b.close()
