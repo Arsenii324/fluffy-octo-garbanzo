@@ -11,12 +11,13 @@ pref = args.pref
 pref = pref.replace(',', ' ')
 pref = pref.split()
 clg = args.clg
+
 n=3
 ban = """ #№$%^/|&*_=+""" # no -
 dot = """"'[{]}\\<>.!?;:"""
 mstr = ban[1]
 mstr2 = ban[3]
-trigcnt = defaultdict(lambda: ['.'])
+trigcnt = defaultdict(lambda: [])
 b = open(mdf)
 for x in b:
     x = x.strip()
@@ -24,6 +25,14 @@ for x in b:
     trigcnt[tuple(cs[:-1]) ].append(cs[2])
 b.close()
 cans = pref
-while len(pref) < n-1:
-    pref.append(3)
-    
+while len(cans) < n-1:
+   cans.append(np.random.choice(trigcnt.values())[0])
+clg = int(clg)
+while len(cans) < clg:
+	v = tuple(cans[len(cans)-n:])
+	if v in trigcnt.keys():
+		cans.append(np.random.choice(trigcnt[v]))
+	else:
+       cans.append(np.random.choice(trigcnt.values())[0])
+
+print(" ".join(cans))
