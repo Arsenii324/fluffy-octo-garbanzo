@@ -33,11 +33,10 @@ for x in a:
     if t:
         dq.append(''.join(t))
     while len(dq) >= n:
-        print(tuple(dq[i] for i in range(n)))
         trigcnt[tuple(dq[i] for i in range(n))] += 1
         dq.popleft()
 b = open(mdf, mode='w')
 mstr = ban[1]
 mstr2 = ban[3]
-b.write(mstr.join(mstr2.join(x) + mstr2 + str(y) for x, y in trigcnt.items()))
+b.write('\n'.join(mstr2.join(x) + mstr2 + str(y) for x, y in trigcnt.items()))
 b.close()
